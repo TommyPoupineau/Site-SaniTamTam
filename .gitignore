@@ -1,5 +1,6 @@
 # Ignore configuration files that may contain sensitive information.
 sites/*/settings*.php
+Sanitmtm-2017-12-04T12-42-47.sitearchive.tar.gz
 
 # Ignore paths that contain user-generated content.
 sites/*/files
