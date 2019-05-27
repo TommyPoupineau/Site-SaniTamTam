@@ -1,0 +1,4 @@
+name = mw_module
+description = Modifications perso
+package = Mwebius Project Modules
+core = 7.x

@@ -1,0 +1,71 @@
+name ='Amili'
+description = 'Lorem ipsum dolor sit amet, consectetur adip.'
+package = 'Core'
+version = 'VERSION'
+core = '7.x'
+screenshot = 'screenshot.png'
+
+;styles
+stylesheets[all][] = css/bootstrap.min.css
+stylesheets[all][] = rs-plugin/css/settings.css
+stylesheets[all][] = css/revo-slider/custom.css
+stylesheets[all][] = css/icons-fonts.css
+stylesheets[all][] = css/flexslider.css
+stylesheets[all][] = css/flexslider-for-posts.css
+stylesheets[all][] = css/style.css
+stylesheets[all][] = css/layout/wide.css
+stylesheets[all][] = css/colors/yellow.css
+stylesheets[all][] = css/animate.min.css
+stylesheets[all][] = css/update-amili.css
+
+;scripts
+scripts[] = js/update-main-amili.js
+scripts[] = js/jquery.nav.js
+scripts[] = js/jquery-ui.min.js
+scripts[] = js/jquery.imagesloaded.min.js
+scripts[] = js/jquery.flexslider.js
+scripts[] = js/flex-slider.js
+scripts[] = rs-plugin/js/jquery.themepunch.tools.min.js
+scripts[] = rs-plugin/js/jquery.themepunch.revolution-custom.min.js
+scripts[] = js/bootstrap.min.js
+scripts[] = js/gmap3.min.js
+scripts[] = js/jquery.isotope.min.js
+scripts[] = js/owl-carousel/owl.carousel.min.js
+scripts[] = js/jquery.isotope-full-width.min.js
+scripts[] = js/jflickrfeed.min.js
+scripts[] = js/jquery.magnific-popup.js
+scripts[] = js/twitter/jquery.tweet.js
+scripts[] = js/wow.min.js
+scripts[] = js/jquery.inview.js
+scripts[] = js/jquery.circliful.js
+scripts[] = js/main.js
+scripts[] = js/update-amili.js
+
+;regions
+regions[main_menu] = 'Main menu'
+regions[onepage_menu] = 'Onepage Menu'
+regions[footer_menu] = 'Footer menu'
+regions[footer1_1] = 'Footer Regions 1-1'
+regions[footer2_1] = 'Footer Regions 2-1'
+regions[footer3_1] = 'Footer Regions 3-1'
+regions[footer1_2] = 'Footer Regions 1-2'
+regions[footer2_2] = 'Footer Regions 2-2'
+regions[footer3_2] = 'Footer Regions 3-2'
+regions[footer1_3] = 'Footer Regions 1-3'
+regions[footer2_3] = 'Footer Regions 2-3'
+regions[footer3_3] = 'Footer Regions 3-3'
+
+regions[footer_icon] = 'Footer Icon Container'
+regions[map_footer] = 'Map Footer'
+regions[content] = 'Main content'
+regions[search] = 'Search'
+regions[page_t] = 'Page Top'
+regions[page] = 'Page'
+regions[page_l] = 'Page left'
+regions[page_r] = 'Page right'
+regions[page_b] = 'Page Bottom'
+regions[portfolio] = 'Portfolio'
+regions[section] = 'Section content'
+regions[sidebar_blog] = 'Sidebar Blog'
+regions[sidebar_portfolio] = 'Sidebar Portfolio'
+

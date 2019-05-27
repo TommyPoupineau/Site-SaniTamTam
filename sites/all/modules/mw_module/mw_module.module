@@ -1,0 +1,174 @@
+<?php
+
+
+
+function mw_module_debug_data($data) {
+	echo '<pre>'.print_r(mw_module_get_inscrit_to_entre($data), true).'</pre>' ;
+
+}
+/**  * Implementation of hook_rules_condition_info()  */ 
+function mw_module_rules_condition_info() {
+	/*$defaults = array(
+		'parameter' => array(
+			'node' => array(
+				'type' => 'node',
+				'label' => t('Content')
+			),
+		),
+		'module' => 'Taxonomy',
+	);
+	$items['rules_condition_content_has_term'] = $defaults + array(
+		'label' => t('Content has term'),
+	);
+	return $items;*/
+	
+	return array(
+		'rules_condition_content_has_term' => array(
+		  'group' => t('Node'),
+		  'label' => t('Node has taxonomy moderate'),
+		  'parameter' => array(
+			'node' => array(
+			  'type' => 'node',
+			  'label' => t('Node'),
+			)
+		  ),
+		),
+	  );
+} 
+
+/**  * Condition: Check if the node is published  */ 
+function rules_condition_content_has_term($node) {
+	/*if (!is_numeric($settings['term'])) {
+		$settings['term'] = db_result(db_query("SELECT tid FROM {term_data} WHERE name = '%s'", $settings['term']));
+	}  
+	if ($row = db_fetch_array(db_query("SELECT * FROM {term_node} WHERE nid = '%d' AND tid = '%d'", $node->nid, 1))) {
+		return true;   
+	}   
+	return false; */ 
+
+	if ($node != NULL) {
+		if (isset($node->field_nature_du_contenu[LANGUAGE_NONE][0]['tid'])) {
+			$term = entity_metadata_wrapper('taxonomy_term', taxonomy_term_load($node->field_nature_du_contenu[LANGUAGE_NONE][0]['tid']));
+			if ($term->field_activation_mod_ration->value() == 1) {
+				return true ;
+			} else {
+				return false ;
+			}
+		} else {
+			return false ;
+		}
+		
+	}
+} 
+
+/**  * Check for a term configuration form.  */ 
+/*function rules_condition_content_has_term_form($settings, &$form, $form_state) {
+	$form['settings']['term'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Term ID or text of term'),
+		'#default_value' => isset($settings['term']) ? $settings['term'] : '',
+		'#description' => t("Provide a number for a term ID (tid) or a string for matching text."),
+		'#required' => TRUE,   
+	);
+} */
+/*- See more at: http://chrisshattuck.com/blog/working-example-adding-conditional-rule-drupal-rules-module-checking-taxonomy-term#sthash.w1pXEJqW.dpuf*/
+
+
+function ds_views_row_adv_page_article(&$vars) {
+//
+ $nid = $vars->nid;
+ if (!is_numeric($nid)) {
+   return;
+ }
+
+ $node = node_load($nid);
+ if ($nid == -17) {
+	 print_r($node);
+ }
+
+ 
+ if (empty($node)) {
+   return;
+ }
+
+ // Custom build mode selection
+ static $i = 1;
+
+if (!empty($node->field_lieu['und'][0]['lat'])) {
+   $node->build_mode = 'page_carte';
+ }
+  
+ 
+ else {
+   $node->build_mode = 'full';
+ }
+
+
+ // Check on page.
+ if (isset($_GET['page'])) {
+   //$node->build_mode = 'title_list'; // From page 1, only use this build mode.
+ }
+
+ // Check the teaser flag and show_links flag.
+ $teaser = ($node->build_mode != 'full') ? TRUE : FALSE;
+ //$show_links = ds_show_links('nd', $node->type, $node->build_mode);
+
+ // Build object.
+$element = node_view($node, $node->build_mode, FALSE);
+return drupal_render($element);
+//return $element;
+}
+function ds_views_row_adv_liste_articles(&$vars) {
+//
+ $nid = $vars->nid;
+ if (!is_numeric($nid)) {
+   return;
+ }
+
+ $node = node_load($nid);
+ if ($nid == -17) {
+	 print_r($node);
+ }
+
+ 
+ if (empty($node)) {
+   return;
+ }
+
+ // Custom build mode selection
+ static $i = 1;
+ if (sizeof($node->field_vid_o) > 0) {
+   $node->build_mode = 'accroche_video';
+ }
+ elseif (!empty($node->field_lieu['und'][0]['lat'])) {
+   $node->build_mode = 'accroche_carte';
+ }
+  elseif (sizeof($node->field_enregistrement_audio) > 0) {
+   $node->build_mode = 'accroche_son';
+ }
+  elseif (sizeof($node->field_fichier_audio) > 0) {
+   $node->build_mode = 'accroche_son';
+ }
+  elseif (sizeof($node->field_image) > 0) {
+   $node->build_mode = 'accroche_image';
+ }
+ 
+ else {
+   $node->build_mode = 'teaser';
+ }
+
+
+ // Check on page.
+ if (isset($_GET['page'])) {
+   //$node->build_mode = 'title_list'; // From page 1, only use this build mode.
+ }
+
+ // Check the teaser flag and show_links flag.
+ $teaser = ($node->build_mode != 'full') ? TRUE : FALSE;
+ //$show_links = ds_show_links('nd', $node->type, $node->build_mode);
+
+ // Build object.
+$element = node_view($node, $node->build_mode, FALSE);
+return drupal_render($element);
+//return $element;
+}

@@ -1,0 +1,51 @@
+.form-radios{
+	width:100%;
+	float:left;
+	margin-top:60px!important;
+	clear:both;
+}
+.form-radios input[type=radio]{
+	margin-right:15px;
+	cursor: pointer;
+	background: #e1e1e1;
+}
+.form-radios .form-item{
+	width: 70px;
+	margin: 0 30px 90px 0!important;
+	float: left;
+}
+.form-radios .form-item label{
+	margin-top: -70px!important;
+	border: 2px solid #fff!important;
+	outline: 1px solid #ddd!important;
+	position: absolute!important;
+	display: block;
+	width: 70px;
+	height: 0px;
+	line-height: 30px;
+	padding-top: 70px!important;
+	cursor: pointer;
+	text-align: center;
+	color: #444;
+	border: 1px solid #fff;
+	outline: 2px solid #a3af7f;
+	font-weight: bold;
+	background:#333
+}
+.form-item label[for="edit-built-in-skins-teal"] { background: #1bbc9b;}
+.form-item label[for="edit-built-in-skins-blue"] {  background: #37a2d6;}
+.form-item label[for="edit-built-in-skins-green"] { background: #259b24;}
+.form-item label[for="edit-built-in-skins-yellow"] { background: #ffea00; }
+.form-item label[for="edit-built-in-skins-brown"] { background: #987654; }
+.form-item label[for="edit-built-in-skins-cyan"] { background: #4cc1d3; }
+.form-item label[for="edit-built-in-skins-lime"] {  background: #cddc39; }
+.form-item label[for="edit-built-in-skins-deeporange"] { background: #ff5722;}
+
+.form-radios .form-item-active label{
+	border: 3px solid #fff!important;
+	outline: 2px solid #a3af7f!important;
+	font-weight: bold!important;
+}
+.form-item .form-item{
+	padding:15px 0px!important;
+}
