@@ -1,0 +1,82 @@
+<?php
+
+define('PRIVATE_REALM', 'private');
+define('PRIVATE_GRANT_ID_PUBLIC', 0);
+define('PRIVATE_GRANT_ID_PRIVATE', 1);
+
+/**
+ * Implementation of hook_node_grants().
+ */
+function private_node_grants($account, $op)
+{
+    // we're only interested in providing rules for viewing content,
+    // update and delete can be handled elsewhere by the content module
+    // and it's permissions
+
+    if ($op == 'view') {
+        if (array_key_exists(3, $account->roles) || array_key_exists(4, $account->roles)) {
+            // this is an authenticated user, give them both the 'public' and
+            // 'private' grant IDs to allow them access to everything
+            $grants[PRIVATE_REALM] = array(
+        PRIVATE_GRANT_ID_PUBLIC,
+        PRIVATE_GRANT_ID_PRIVATE,
+      );
+        } else {
+            // this is an anonymous user, give them the 'public' grant ID
+            // that allows them access to public nodes
+            $grants[PRIVATE_REALM] = array(
+        PRIVATE_GRANT_ID_PUBLIC,
+      );
+        }
+
+        return $grants;
+    }
+}
+
+/**
+ * Implementation of hook_node_access_records().
+ */
+function private_node_access_records($node)
+{
+    // use $node to make a decision as to which grants to make.
+    // this is a trivial example based on the node ID but illustrates
+    // where you would put more meaningful business logic.
+
+    if ($node->field_public_priv_['und'][0]['value'] == 1) {
+        $private = true;
+    } else {
+        $private = false;
+    }
+
+    if ($private) {
+        // this is a private node, so add a rule that allows it to be viewed
+        // by those with the 'private' grant ID
+
+        $grants[] = array(
+      'realm' => PRIVATE_REALM,
+      'gid' => PRIVATE_GRANT_ID_PRIVATE,
+      'grant_view' => 1,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+      'priority' => 0,
+    );
+    } else {
+        // this is not a private node, so add a rule that allows the
+        // 'anonymous user' grant ID view access. We'll assume that
+        // private_node_grants() gives authenticated users both
+        // 'authenticated user' and 'anonymous user' grant IDs, so there
+        // is no need for more than one rule here.
+
+        $grants[] = array(
+      'realm' => PRIVATE_REALM,
+      'gid' => PRIVATE_GRANT_ID_PUBLIC,
+      'grant_view' => 1,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+      'priority' => 0,
+    );
+    }
+    // var_dump($private);
+
+    return $grants;
+}

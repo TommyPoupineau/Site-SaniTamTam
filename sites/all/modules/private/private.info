@@ -1,0 +1,3 @@
+name = Private
+description = Module permettant de rendre visible ou non des éléments en fonction du rôle de l'utilisateur.
+core = 7.x
