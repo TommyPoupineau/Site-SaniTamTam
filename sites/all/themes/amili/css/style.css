@@ -8877,3 +8877,23 @@ z-index: 100;
 .view-display-id-block_1 {
 	margin-top: 45px;
 }
+
+.navbar {
+	position: relative;
+}
+
+.connexion_links {
+	position: absolute;
+	right: 0px;
+	z-index: 10000000;
+	background-color: #4D8F46;
+}
+
+.connexion_links a {
+	padding-right: 5px;
+	color: white!important;
+}
+
+.affix .connexion_links {
+	display: none;
+}

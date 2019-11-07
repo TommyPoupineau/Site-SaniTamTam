@@ -3,7 +3,9 @@
 define('PRIVATE_REALM', 'private');
 define('PRIVATE_GRANT_ID_PUBLIC', 0);
 define('PRIVATE_GRANT_ID_PRIVATE', 1);
+define('AGORA_ROLE_ID', 4);
 
+// in_array('agora', $roles)
 /**
  * Implementation of hook_node_grants().
  */
@@ -79,4 +81,132 @@ function private_node_access_records($node)
     // var_dump($private);
 
     return $grants;
+}
+
+function private_node_insert($node)
+{
+
+
+
+    $file = file_load($node->field_image['und'][0]['fid']);
+    $url_image = image_style_url('img_500x500', $file->uri);
+    $user = user_load($node->uid);
+    $roles = $user->roles;
+    $query = 'SELECT DISTINCT(ur.uid) 
+FROM {users_roles} AS ur
+WHERE ur.rid IN (:rids)';
+    $result = db_query($query, array(':rids' => array(4)));
+    
+    $uids = $result->fetchCol();
+    
+    $users = user_load_multiple($uids);
+
+    if ($node->field_public_priv_['und'][0]['value'] == 1) {
+      $private = "privé";
+  } else {
+      $private = "public";
+  }
+    
+    if (array_key_exists(AGORA_ROLE_ID, $roles) && $node->type === 'article') {
+      
+      //Comme l'utilisateur est Agora, on publie dirctement l'article.
+        $node->status=1;
+        node_save($node);
+
+        foreach ($users as $user) {
+            if ($user->field_notification_agora['und'][0]['value'] == 0) {
+                continue;
+            }
+                $str = $node->body['fr'][0]['value'];
+                if (strlen($str) > 10) {
+                    $str = substr($str, 0, 150).'...';
+                }
+        
+                $mail_content = '
+        <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Email du Sanitamtam</title>
+</head>
+
+<body>
+    <table style="border-collapse:collapse!important; border-spacing:0!important" cellspacing="0" cellpadding="20"
+        border="0" width="700">
+
+        <tr>
+          <td width= "200" 
+          style="padding: 0; width: 200px!important;"
+          align="left">
+            <img width="200" style="background-color:#FFFFFF"; src="http://sanitamtam.fr/sites/default/files/logo_SaniTamTam.png">
+          </td>
+            <td width= "500"
+                style="background-color:#E6332A; font-weight:bold; font-size:3em; line-height:1.2em; font-family:georgia,\'times\',serif; color:white";
+                align="center">
+                Nouvel article sur le Santit@mt@m
+            </td>
+
+        </tr>
+        <tr>
+
+            <td colspan="2"
+                style="background-color:#FFFFFF; font-size:1.2em; line-height:1.2em; font-family:georgia,\'times\',serif;"
+                align="center">
+                Bonjour '.$user->name.'
+                , vous êtes notifié par ce mail d\'une nouvelle publication privée du Sanitamtam par
+                '.$node->name.' le '.date("d-m-Y \à H:i").'.
+                <br>Cet article est un article '.$private.'.
+            </td>
+
+        </tr>
+        <tr>
+
+            <td width="500"
+                style="background-color:#FFFFFF; font-size:1.2em; line-height:1.2em; font-family:georgia,\'times\',serif; padding-right:0;"
+                align="left">
+                Description:
+                <br>'.$str.'
+
+
+
+            </td>
+
+            <td width="200" >
+                <img width="200" src="'.$url_image.'" alt="Image de l\'article notifié">
+            </td>
+
+        </tr>
+        <tr>
+
+            <td colspan="2"
+                style="background-color:#4D8F46; font-size:1.2em; line-height:1.2em; font-family:georgia,\'times\',serif; color: white;"
+                align="center">
+                Veuillez ne pas répondre à ce mail automatique.
+            </td>
+
+        </tr>
+    </table>
+
+</body>
+
+</html>';
+
+                $headers = "MIME-Version: 1.0" . "\r\n";
+                $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+                $to = $user->mail;
+                $subject = 'Notification Agora';
+
+                mail($to, $subject, $mail_content, $headers);
+            }
+        
+    }
+
+    else {
+        
+    }
+
 }

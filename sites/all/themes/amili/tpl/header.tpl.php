@@ -1,14 +1,14 @@
-<?php 
-	$style = '';
-	$header_style = '';
-	$style = theme_get_setting('header_style', 'amili');
-	if($style){
-		$header_style = theme_get_setting('header_style', 'amili');
-	}else{
-		$header_style = 'style1';
-	}
+<?php
+    $style = '';
+    $header_style = '';
+    $style = theme_get_setting('header_style', 'amili');
+    if ($style) {
+        $header_style = theme_get_setting('header_style', 'amili');
+    } else {
+        $header_style = 'style1';
+    }
 ?>
-<?php if($header_style == 'style1'){ ?>
+<?php if ($header_style == 'style1') { ?>
 	<header id="nav" class="header header-1 header-no-bg">
 		<div class="header-wrapper ">
 			<div class="container">
@@ -17,8 +17,12 @@
 					<div class="logo-container">
 						<a href="<?php print base_path(); ?>">
 							<div class="logo">
-								<img src="<?php if($logo){print $logo;}else{print $site_name;} ?>" class="logo-img" alt="Logo" title="<?php print $site_name; ?>">
-								<?php // print $site_name; ?>
+								<img src="<?php if ($logo) {
+    print $logo;
+} else {
+    print $site_name;
+} ?>" class="logo-img" alt="Logo" title="<?php print $site_name; ?>">
+								<?php // print $site_name;?>
 							</div>
 						</a>
 					</div>
@@ -54,7 +58,7 @@
 						
 		</div><!-- header-wrapper -->
 	</header><!-- header -->
-<?php }elseif($header_style == 'style2'){ ?>
+<?php } elseif ($header_style == 'style2') { ?>
 	<header id="nav" class="header header-2">
 		<div class="header-wrapper">
 		<div class="container">
@@ -99,7 +103,7 @@
 					
 					</div><!-- header-wrapper -->
 	</header><!-- header -->
-<?php }elseif($header_style == 'style3'){ ?>
+<?php } elseif ($header_style == 'style3') { ?>
 	<header id="nav" class="header header-3">
 	<div class="header-wrapper">
 		<div class="container">
@@ -108,7 +112,11 @@
 				<div class="logo-container-3">
 					<a href="<?php print base_path(); ?>">
 						<div class="logo">
-							<img src="<?php if($logo){print $logo;}else{print $site_name;} ?>" class="logo-img" alt="Logo" title="<?php print $site_name; ?>">
+							<img src="<?php if ($logo) {
+    print $logo;
+} else {
+    print $site_name;
+} ?>" class="logo-img" alt="Logo" title="<?php print $site_name; ?>">
 						</div>
 					</a>
 				</div>
@@ -146,7 +154,7 @@
 					
 					</div><!-- header-wrapper -->
 					</header><!-- header -->
-<?php }elseif($header_style == 'style4'){ ?>
+<?php } elseif ($header_style == 'style4') { ?>
 	<header id="nav" class="header header-4">
 	<div class="header-wrapper">
 		<div class="container">
@@ -192,7 +200,7 @@
 					
 					</div><!-- header-wrapper -->
 					</header><!-- header -->
-<?php }elseif($header_style == 'style5'){ ?>
+<?php } elseif ($header_style == 'style5') { ?>
 	<header id="nav" class="header header-1">
 	<div class="header-wrapper ">
 		<div class="container">
@@ -202,7 +210,11 @@
 				<div class="logo-container">
 					<a href="<?php print base_path(); ?>">
 						<div class="logo">
-							<img src="<?php if($logo){print $logo;}else{print $site_name;} ?>" class="logo-img" alt="Logo" title="<?php print $site_name; ?>">
+							<img src="<?php if ($logo) {
+    print $logo;
+} else {
+    print $site_name;
+} ?>" class="logo-img" alt="Logo" title="<?php print $site_name; ?>">
 						</div>
 					</a>
 				</div>
@@ -238,7 +250,7 @@
 					
 					</div><!-- header-wrapper -->
 					</header><!-- header -->
-<?php }elseif($header_style == 'style6'){ ?>
+<?php } elseif ($header_style == 'style6') { ?>
 	<header id="nav-below" class="header header-4">
 	<div class="header-wrapper ">
 		<div class="container">
@@ -284,7 +296,7 @@
 					
 					</div><!-- header-wrapper -->
 					</header><!-- header -->
-<?php }elseif($header_style == 'style7'){ ?>
+<?php } elseif ($header_style == 'style7') { ?>
 	<header class="header header-2 header-always-sticky">
 	<div class="header-wrapper">
 		<div class="container">
@@ -330,7 +342,7 @@
 					
 					</div><!-- header-wrapper -->
 					</header><!-- header -->
-<?php }elseif($header_style == 'style8'){ ?>
+<?php } elseif ($header_style == 'style8') { ?>
 	<header class="header header-2 header-not-sticky">
 	<div class="header-wrapper">
 		<div class="container">

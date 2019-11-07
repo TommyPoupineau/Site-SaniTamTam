@@ -4,9 +4,13 @@
 			<div class="logo-row">
 				<!-- LOGO -->
 				<div class="logo-container">
-					<a href="<?php print base_path(); ?>">
+					<a href="<?php echo base_path(); ?>">
 						<div class="logo">
-							<?php if($logo){print '<img src="'.$logo.'" class="logo-img" alt="Logo" title="'.$site_name.'">';}else{print $site_name;} ?>
+							<?php if ($logo) {
+    echo '<img src="'.$logo.'" class="logo-img" alt="Logo" title="'.$site_name.'">';
+} else {
+    echo $site_name;
+} ?>
 						</div>
 					</a>
 				</div>
@@ -27,11 +31,27 @@
 					<div class="navbar navbar-default" role="navigation">
 						<!-- MAIN MENU LIST-->
 						<nav class="collapse collapsing navbar-collapse right">
-							<?php print render($page['main_menu']); ?>
+							<?php echo render($page['main_menu']); ?>
 							<!-- SEARCH READ DOCUMENTATION -->
 							<div id="sb-search" class="search sb-search right hide-respons ">
-								<?php print render($page['search']); ?>
+								<?php echo render($page['search']); ?>
 							</div>
+										<div class="connexion_links">
+			
+											<?php if (!user_is_logged_in()) {
+    ?>
+									<?php
+                                    $menu = menu_navigation_links('menu-connexion-inscription');
+    echo theme('links__menu_user_page', array('links' => $menu)); ?>
+								<?php
+} else {
+        ?> 
+									<?php
+                                    $menu = menu_navigation_links('user-menu');
+        echo theme('links__menu_user_page', array('links' => $menu)); ?>
+								<?php
+    } ?>
+										</div>
 							
 						</nav>
 					</div>
