@@ -1,6 +1,7 @@
 <?php
+$form = [] ;
 	$form['mail']['#attributes']['placeholder'] = 'VOTRE EMAIL';
-	$form['mail']['#attributes']['class'] = array('email nl-email-input');
+	$form['mail']['#attributes']['class'] = array('email', 'nl-email-input');
 	$form['submit']['#attributes']['class'] = array('nl-button');
 	$form['submit']['#value'] = 'SIGN UP';
 ?>
