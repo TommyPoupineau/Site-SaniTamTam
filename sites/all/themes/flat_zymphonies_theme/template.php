@@ -94,7 +94,7 @@ function flat_zymphonies_theme_preprocess_node(&$variables) {
   }
 }
 
-function medical_page_alter($page) {
+function flat_zymphonies_theme_page_alter($page) {
   // <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
   $viewport = array(
     '#type' => 'html_tag',

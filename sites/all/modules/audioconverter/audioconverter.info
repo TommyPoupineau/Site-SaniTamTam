@@ -5,9 +5,9 @@ package = Media
 dependencies[] = audiofield
 files[] = audioconverter.module
 
-; Information added by drupal.org packaging script on 2012-10-22
-version = "7.x-1.0-beta2"
+; Information added by Drupal.org packaging script on 2016-03-18
+version = "7.x-1.0-beta3"
 core = "7.x"
 project = "audioconverter"
-datestamp = "1350892573"
+datestamp = "1458297478"
 

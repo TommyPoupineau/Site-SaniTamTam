@@ -199,6 +199,17 @@ function views_isotope_ctools_export_ui_form(&$form, &$form_state) {
     '#required' => FALSE,
   );
 
+  if (!module_exists('libraries')) {
+    $lib_link = l(t('the libraries module'), 'https://www.drupal.org/project/libraries',
+      array('attributes' => array('target' => '_blank')));
+    $form['instructions'] = array(
+      '#type' => 'item',
+      '#title' => t('Installing Additional Plugins'),
+      '#markup' => t('In order to install additional plugins please first install !link', array('!link' => $lib_link)),
+    );
+    return;
+  }
+
   foreach ($libraries as $lib_name => $library) {
     if (!in_array($lib_name, $detected_libraries)) {
       $lib_link = l($lib_name, $library['url']);
@@ -214,7 +225,7 @@ function views_isotope_ctools_export_ui_form(&$form, &$form_state) {
       }
       $lib_path .= '/' . $library['filename'];
       $item = '<strong>' . $lib_link . '</strong><br />';
-      $item .= '<em>' . t('Install into: ') . $lib_path . '</em><br />';
+      $item .= t('<em>Install into: @path</em><br />', array('@path', $lib_path));
       $item .= $library['description'];
       $items[] = $item;
     }

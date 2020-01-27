@@ -49,7 +49,7 @@ function views_isotope_default_isotope_configuration() {
   $config->stamp = '.stamp';
   $config->horizontalAlignment = NULL;
   $config->verticalAlignment = NULL;
-  $config->isOriginLeft = NULL;
+  $config->isOriginLeft = 1;
 
   // If imagesLoaded is available, add it by default.
   if (views_isotope_check_additional_libraries('imagesLoaded')) {
@@ -313,9 +313,9 @@ function views_isotope_check_url($url) {
 function views_isotope_sanitize($raw) {
   $safe = $raw;
 
-  if(is_array($raw)) {
+  if (is_array($raw)) {
     $safe = array();
-    foreach($raw as $i) {
+    foreach ($raw as $i) {
       $safe[] = views_isotope_sanitize($i);
     }
     return implode(' ', $safe);
@@ -397,7 +397,7 @@ function theme_isotope_grid(array $vars) {
   // Add the sorting options to the initial configuration.
   $additional_config = array('getSortData' => array());
   foreach ($vars['items'] as $item) {
-    $item['data'] = !empty($item['data']) ? $item['data'] : [];
+    $item['data'] = !empty($item['data']) ? $item['data'] : array();
     foreach ($item['data'] as $key => $value) {
       $additional_config['getSortData'][$key] = '.' . $key;
     }
@@ -431,7 +431,7 @@ function theme_isotope_grid(array $vars) {
 
   foreach ($vars['items'] as $item) {
     $sorts = '';
-    $item['data'] = !empty($item['data']) ? $item['data'] : [];
+    $item['data'] = !empty($item['data']) ? $item['data'] : array();
     foreach ($item['data'] as $key => $value) {
       if (!is_array($value)) {
         $value = array($value);
@@ -508,7 +508,8 @@ function theme_isotope_filter(array $vars) {
     }
     if ($multi_field_logic == 'OR') {
       $keys = implode(', ', $keys);
-    } else {
+    }
+    else {
       $keys = implode('', $keys);
     }
     $items[] = l($label, '', array(

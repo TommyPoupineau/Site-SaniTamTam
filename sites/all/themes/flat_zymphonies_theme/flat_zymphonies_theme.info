@@ -1,5 +1,5 @@
 name = Flat Responsive Theme
-description =  Flat Zymphonies Theme<br/>Developed & Designed by <a href="http://www.zymphonies.com">Zymphonies</a><br/>Contact us for Drupal Design & Development <a href="mailto:info@zymphonies.com">info@zymphonies.com</a> 
+description =  Designed & Developed by <a href=http://www.zymphonies.com>Zymphonies</a><br/>Contact us for any kind of Drupal services <a href=mailto:info@zymphonies.com>info@zymphonies.com</a>
 core = 7.x
 
 engine = phptemplate
@@ -34,6 +34,9 @@ regions[footer_second]   = Second bottom widget
 regions[footer_third]    = Third bottom widget
 regions[footer_forth]    = Forth bottom widget
 
+regions[page_top] 		 = Page top
+regions[page_bottom] 	 = Page bottom
+
 features[] = logo
 features[] = name
 features[] = slogan
@@ -59,4 +62,11 @@ version = "7.x-1.0"
 core = "7.x"
 project = "flat_zymphonies_theme"
 datestamp = "1450110557"
+
+
+; Information added by Drupal.org packaging script on 2017-11-29
+version = "7.x-1.2"
+core = "7.x"
+project = "flat_zymphonies_theme"
+datestamp = "1511977399"
 

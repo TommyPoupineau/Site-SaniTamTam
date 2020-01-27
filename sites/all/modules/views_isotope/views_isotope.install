@@ -157,7 +157,7 @@ function views_isotope_update_7100() {
     'size' => 'tiny',
     'description' => 'Should filters be represented in URL?',
   );
-  db_add_field( 'isotope_configurations', 'urlFilters', $spec);
+  db_add_field('isotope_configurations', 'urlFilters', $spec);
 }
 
 /**
@@ -169,5 +169,5 @@ function views_isotope_update_7101() {
     'size' => 'tiny',
     'description' => 'isOriginLeft',
   );
-  db_add_field( 'isotope_configurations', 'isOriginLeft', $spec);
+  db_add_field('isotope_configurations', 'isOriginLeft', $spec);
 }

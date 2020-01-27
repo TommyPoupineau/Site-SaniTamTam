@@ -58,4 +58,5 @@ class isotope_reaction extends context_reaction {
       }
     }
   }
+
 }

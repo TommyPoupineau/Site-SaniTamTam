@@ -2,6 +2,7 @@
  * @file
  * Drupal-specific implementation of isotope package.
  */
+
 (function ($) {
   var isotopeActiveFilters = {};
 
@@ -12,8 +13,10 @@
     var ret = {},
         seg = p.replace(/^\?/,'').split('&'),
         len = seg.length, i = 0, s;
-    for (;i<len;i++) {
-      if (!seg[i]) { continue; }
+    for (; i < len; i++) {
+      if (!seg[i]) {
+        continue;
+      }
       s = seg[i].split('=');
       ret[s[0]] = s[1];
     }
@@ -43,7 +46,7 @@
         if (instanceID) {
           $selector = $selector.filter("[data-instance-id='" + instanceID + "']");
         }
-        if($selector.length) {
+        if ($selector.length) {
           // This sort option exists.
           isotope_apply('sort', value, instanceID);
         }
@@ -53,7 +56,7 @@
         if (instanceID) {
           var $selector = $selector.filter("[data-instance-id='" + instanceID + "']");
         }
-        if($selector.length) {
+        if ($selector.length) {
           // This filter option exists.
           isotope_apply('filter', value, instanceID, filterGroup);
         }
@@ -114,8 +117,8 @@
         // Use imagesLoaded if it is available.
         if (typeof imagesLoaded !== 'undefined') {
           var container = $container.get();
-          imagesLoaded( container, function() {
-            if($container.data('isotope')) {
+          imagesLoaded(container, function() {
+            if ($container.data('isotope')) {
               $container.isotope('layout');
             }
           });
@@ -131,7 +134,7 @@
         }
 
         if (config.stamp) {
-          $container.isotope('stamp', $(config.stamp));
+          $container.isotope().isotope('stamp', $(config.stamp));
         }
 
         // Filter button click.

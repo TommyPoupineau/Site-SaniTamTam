@@ -2,7 +2,7 @@
 /**
  * @file
  */
- 
+
 /**
  * Implementation of hook_install().
  */
@@ -54,7 +54,7 @@ function audioconverter_schema() {
         'not null' => TRUE,
         'default' => 0,
       ),
-        'serialized_data' => array(
+      'serialized_data' => array(
         'description' => t('Informations related to the videos'),
         'type' => 'text',
         'not null' => FALSE,
@@ -62,7 +62,7 @@ function audioconverter_schema() {
 
     ),
     'indexes' => array(
-    'status' => array('status'),
+      'status' => array('status'),
     ),
     'primary key' => array('fid'),
   );

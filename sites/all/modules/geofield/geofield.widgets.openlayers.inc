@@ -144,7 +144,7 @@ function openlayers_field_widget_form(&$form, &$form_state, $field, $instance, $
   $parents = $form['#parents'];
   $field_name = $field['field_name'];
   $id_prefix = implode('-', array_merge($parents, array($field_name, $delta)));
-  $wrapper_id = drupal_html_id($id_prefix . '-use-geocoder-wrapper').rand(1, 100000000);
+  $wrapper_id = drupal_html_id($id_prefix . '-use-geocoder-wrapper');
 
   $settings_defaults = array(
     'openlayers_map' => 'geofield_widget_map',

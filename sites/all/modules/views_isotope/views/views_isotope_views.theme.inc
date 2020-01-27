@@ -98,9 +98,9 @@ function template_preprocess_views_isotope_views_sorter(&$vars) {
  */
 function views_isotope_views_helper_get_field_value($entity, $fieldname) {
   if (!empty($entity->{'field_' . $fieldname})) {
-    foreach($entity->{'field_' . $fieldname} as $a) {
-      if(!empty($a['rendered'])) {
-        $field[] = $a['rendered'];
+    foreach ($entity->{'field_' . $fieldname} as $a) {
+      if (!empty($a['rendered'])) {
+        $field[] = render($a['rendered']);
       }
     }
   }
@@ -114,10 +114,10 @@ function views_isotope_views_helper_get_field_value($entity, $fieldname) {
 
   if (isset($field)) {
     $r = array();
-    if(!is_array($field)) {
+    if (!is_array($field)) {
       $field = array($field);
     }
-    foreach($field as $f) {
+    foreach ($field as $f) {
       $filter_value = render($f);
       $r[] = trim(check_plain(strip_tags($filter_value)));
     }

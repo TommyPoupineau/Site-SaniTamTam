@@ -76,14 +76,18 @@
           <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a>
         </h1>
       <?php endif; ?>
-      <nav id="main-menu"  role="navigation">
-        <a class="nav-toggle" href="#">Navigation</a>
-        <div class="menu-navigation-container">
-          <?php $main_menu_tree = menu_tree(variable_get('menu_main_links_source', 'main-menu'));
-            print drupal_render($main_menu_tree);
-          ?>
-        </div>
-      </nav>
+
+      <?php if ($main_menu): ?>
+        <nav id="main-menu"  role="navigation">
+          <a class="nav-toggle" href="#">Navigation</a>
+          <div class="menu-navigation-container">
+            <?php $main_menu_tree = menu_tree(variable_get('menu_main_links_source', 'main-menu'));
+              print drupal_render($main_menu_tree);
+            ?>
+          </div>
+        </nav>
+      <?php endif; ?>
+
     </div>
   </div>
 
@@ -97,21 +101,19 @@
 
 
 
-<?php if ($is_front): ?>
-  <div id="home-top-block">         
-   <?php if ($page['home_top_block_01'] || $page['home_top_block_02'] || $page['home_top_block_03']): ?> 
-      <div id="top-area" class="page-wrap clearfix">
-        <?php if ($page['home_top_block_01']): ?>
-        <div class="column one"><?php print render($page['home_top_block_01']); ?></div>
-        <?php endif; ?>
-        <?php if ($page['home_top_block_02']): ?>
-        <div class="column two"><?php print render($page['home_top_block_02']); ?></div>
-        <?php endif; ?>
-        <?php if ($page['home_top_block_03']): ?>
-        <div class="column three"><?php print render($page['home_top_block_03']); ?></div>
-        <?php endif; ?>
-      </div>
-    <?php endif; ?>
+<?php if ($page['home_top_block_01'] || $page['home_top_block_02'] || $page['home_top_block_03']): ?> 
+  <div id="home-top-block">
+    <div id="top-area" class="page-wrap clearfix">
+      <?php if ($page['home_top_block_01']): ?>
+      <div class="column one"><?php print render($page['home_top_block_01']); ?></div>
+      <?php endif; ?>
+      <?php if ($page['home_top_block_02']): ?>
+      <div class="column two"><?php print render($page['home_top_block_02']); ?></div>
+      <?php endif; ?>
+      <?php if ($page['home_top_block_03']): ?>
+      <div class="column three"><?php print render($page['home_top_block_03']); ?></div>
+      <?php endif; ?>
+    </div>
   </div>
 <?php endif; ?>
   
